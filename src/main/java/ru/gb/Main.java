@@ -1,11 +1,10 @@
 package ru.gb;
 
 import ru.gb.server.ServerGUI;
-
-import java.awt.*;
+import ru.gb.server.SettingsServerGUI;
 
 public class Main {
     public static void main(String[] args) {
-        new ServerGUI();
+        new SettingsServerGUI(new ServerGUI());
     }
 }

@@ -2,8 +2,7 @@ package ru.gb.server;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+import java.time.LocalDateTime;
 
 public class ServerGUI extends JFrame {
     //region Константы
@@ -13,16 +12,24 @@ public class ServerGUI extends JFrame {
     public static final int WINDOW_HEIGHT = 500;
     //endregion
 
-    JButton btnExit;
-    JToggleButton btnStart;
-    JTextArea textArea;
+    SettingsServerGUI settingsServerGUI;
+
+    static JTextArea textArea;
+    JButton btnSetings;
+
 
     public ServerGUI() throws HeadlessException {
+        // TODO: 15.11.2023 как изменить кнопку при закрытии окна,т.е. отключить сервер в настройках и  отправить сообщение всем пользователям, что сервер недоступен 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Server");
         setResizable(true);
         setLocation(POSITION_X, POSITION_Y);
         setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+
+        //region Окно настроек сервера (ip,  port).
+        settingsServerGUI = new SettingsServerGUI(this);
+        settingsServerGUI.setVisible(true);
+        //endregion
 
         //region Текстовое поле. Ввод с клавиатуры запрещён.
         textArea = new JTextArea();
@@ -31,35 +38,20 @@ public class ServerGUI extends JFrame {
         textArea.setEditable(false);
         //endregion
 
-        //region Кнопка "Включить", запускает сервер. Название кнопки изменяется на отключить.
-        btnStart = new JToggleButton("Включить");
-        btnStart.addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                if (btnStart.isSelected()) {
-                    btnStart.setText("Отключить");
-                } else {
-                    btnStart.setText("Включить");
-                }
-            }
-        });
-        //todo Реализовать действие по нажатию кнопки "Включить/выключить"
+        //region Кнопка "Опции" выводит окно настроек сервера
+        btnSetings = new JButton("Опции");
+        add(btnSetings, BorderLayout.SOUTH);
+        // TODO: 15.11.2023 реализовать действие кнопки (показать окно настроек) 
         //endregion
 
-        //region Кнопка "Выход"
-        btnExit = new JButton("Выход");
-        //todo Реализовать действие по нажатию кнопки "выход"
-        //endregion
-
-        //region Создана панель, в панель добавлено две кнопки "Выход и подключить/отключить"
-        JPanel panBotton = new JPanel(new GridLayout(1, 2));
-        panBotton.add(btnStart);
-        panBotton.add(btnExit);
-        add(panBotton, BorderLayout.SOUTH);
-        //endregion
-
-        setVisible(true);
+        setVisible(false);
     }
 
+    static void appendLog(String text) {
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        String message = currentDateTime.toString();
+        textArea.append("[" + message + "]" + text + "\n");
+    }
 
+    // TODO: 15.11.2023 создать кнопку настройки (открыть окно настроек данного подключения) 
 }
