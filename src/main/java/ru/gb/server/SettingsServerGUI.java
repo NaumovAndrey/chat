@@ -54,7 +54,7 @@ public class SettingsServerGUI extends JFrame implements Message {
                     setVisible(false);
                 } else {
                     btnStart.setText("Включить");
-                    readingMessage("Отключение от сервера");
+                    readingMessage("Отключение сервера");
                 }
             }
         });

@@ -2,6 +2,8 @@ package ru.gb.server;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
 
 public class ServerGUI extends JFrame {
@@ -41,13 +43,19 @@ public class ServerGUI extends JFrame {
         //region Кнопка "Опции" выводит окно настроек сервера
         btnSetings = new JButton("Опции");
         add(btnSetings, BorderLayout.SOUTH);
-        // TODO: 15.11.2023 реализовать действие кнопки (показать окно настроек) 
+
+        btnSetings.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                settingsServerGUI.setVisible(true);
+            }
+        });
         //endregion
 
         setVisible(false);
     }
 
-    static void appendLog(String text) {
+    public static void appendLog(String text) {
         LocalDateTime currentDateTime = LocalDateTime.now();
         String message = currentDateTime.toString();
         textArea.append("[" + message + "]" + text + "\n");
