@@ -26,6 +26,7 @@ public class ClientGUI extends JFrame {
 
     public ClientGUI() throws HeadlessException {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("Client");
         setResizable(true);
         //setLocationRelativeTo(null);

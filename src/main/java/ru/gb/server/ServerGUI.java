@@ -21,7 +21,7 @@ public class ServerGUI extends JFrame {
 
 
     public ServerGUI() throws HeadlessException {
-        // TODO: 15.11.2023 как изменить кнопку при закрытии окна,т.е. отключить сервер в настройках и  отправить сообщение всем пользователям, что сервер недоступен 
+        // TODO: 15.11.2023  отключить сервер в настройках и  отправить сообщение всем пользователям, что сервер недоступен
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Server");
         setResizable(true);
